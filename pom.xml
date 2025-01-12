@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    pom.xml kya hai?
+    - Maven project ka configuration file hai
+    - Isme project ki saari information aur dependencies define ki jaati hain
+    - XML format mein likha jaata hai
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    
+    <!-- Maven version - ye batata hai ki hum kaun sa Maven version use kar rahe hain -->
+    <modelVersion>4.0.0</modelVersion>
+    
+    <!-- 
+        Parent POM - Spring Boot ke basic features ke liye
+        - version: Spring Boot ka version (3.2.1)
+        - relativePath: Parent POM kahan se load karna hai
+    -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.1</version>
+        <relativePath/>
+    </parent>
+
+    <!-- 
+        Project ki basic information:
+        - groupId: Company/Organization ka unique identifier
+        - artifactId: Project ka unique name
+        - version: Project ka version (SNAPSHOT matlab development version)
+        - name: Display name
+        - description: Project ka short description
+    -->
+    <groupId>io.datajek.spring.basics.movierecommendersystem</groupId>
+    <artifactId>movierecommendersystem</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>MovieRecommenderSystem</name>
+    <description>Movie Recommender System using Spring Boot</description>
+
+    <!-- 
+        Properties - Global variables jaise
+        - java.version: Project mein use hone wala Java version
+        Aur properties add karne ke liye format:
+        <property-name>value</property-name>
+    -->
+    <properties>
+        <java.version>17</java.version>
+    </properties>
+
+    <!-- 
+        Dependencies section - Saari external libraries yahan define hoti hain
+        Har dependency ke liye zaruri elements:
+        - groupId: Library ka organization
+        - artifactId: Library ka name
+        - version: Optional, parent POM se aa sakta hai
+        - scope: Kab use hogi ye library (runtime, test, etc.)
+    -->
+    <dependencies>
+        <!-- 
+            Spring Boot Web Starter
+            - Web application banane ke liye basic dependencies
+            - Includes: Spring MVC, Tomcat server, etc.
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- 
+            Thymeleaf - HTML templates ke liye
+            - Dynamic HTML pages banane ke liye
+            - Server-side rendering ke liye
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
+        <!-- 
+            Spring Boot DevTools
+            - Development time pe help karta hai
+            - Auto restart application when files change
+            - scope="runtime": Sirf development time pe use hoga
+            - optional="true": Iske bina bhi application chal sakta hai
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- 
+            Testing ke liye dependencies
+            - JUnit, Spring Test frameworks
+            - scope="test": Sirf testing ke time pe use hoga
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <!-- 
+        Build configuration
+        - Maven plugins ki configuration
+        - Jar/War file kaise banana hai
+        - Kya kya include/exclude karna hai
+    -->
+    <build>
+        <plugins>
+            <!-- 
+                Spring Boot Maven Plugin
+                - Executable JAR/WAR banane ke liye
+                - Spring Boot ke features ko package mein include karne ke liye
+            -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Movie Recommender System</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Basic CSS for better look */
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .recommendations {
+            margin-top: 20px;
+        }
+        .movie {
+            background-color: #f8f9fa;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 3px;
+        }
+        form {
+            margin: 20px 0;
+            text-align: center;
+        }
+        input[type="text"] {
+            padding: 8px;
+            width: 300px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 8px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <!--
+        This is the home page of the movie recommender system.
+        User can search for movies using the form and get recommendations.
+        If no search query is provided, it will show popular recommendations.
+        
+        The form sends a GET request to the /recommend URL.
+        The name of the movie is sent as a query parameter.
+        
+        We use Thymeleaf to dynamically generate the recommendations.
+        The ${recommendations} is a list of movie names.
+        Thymeleaf iterates over the list and creates a <div> for each movie.
+        The <span> inside the <div> shows the name of the movie.
+    -->
+    <div class="container">
+        <h1>🎬 Movie Recommender System</h1>
+        
+        <!-- Movie search form -->
+        <!--
+            Form ko /recommend URL pe submit karta hai
+            GET request mein movie ka name bhejta hai
+        -->
+        <form action="/recommend" method="get">
+            <input type="text" name="movie" placeholder="Enter a movie name">
+            <button type="submit">Get Recommendations</button>
+        </form>
+
+        <!-- Default recommendations -->
+        <!--
+            Agar user ne koi search query nahi diya to ye popular recommendations dikhaega
+            Thymeleaf ki madad se ye dynamically generate ho raha hai
+        -->
+        <div class="recommendations">
+            <h2>Popular Recommendations:</h2>
+            <div th:each="movie : ${recommendations}" class="movie">
+                <span th:text="${movie}">Movie Name</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
